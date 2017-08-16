@@ -45,7 +45,7 @@ class WishlistController extends FOSRestController
 
         $view = View::create($wishlist);
 
-        if ($request->getRequestFormat() == 'html') {
+        if ($request->isXmlHttpRequest()) {
             $view->setTemplate('WebburzaSyliusWishlistBundle:Frontend/Wishlist:show.html.twig');
 
             $view->setData([
@@ -88,7 +88,7 @@ class WishlistController extends FOSRestController
         }
 
         // If this was an AJAX request, return appropriate response
-        if ($request->getRequestFormat() != 'html') {
+        if ($request->isXmlHttpRequest()) {
             return new JsonResponse(['wishlist' => $wishlist], 200);
         }
 
@@ -128,7 +128,7 @@ class WishlistController extends FOSRestController
         }
 
         // If this was an AJAX request, return appropriate response
-        if ($request->getRequestFormat() != 'html') {
+        if ($request->isXmlHttpRequest()) {
             return new JsonResponse(null, 200);
         }
 
