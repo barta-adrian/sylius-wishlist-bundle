@@ -91,7 +91,7 @@ class WishlistItemController extends FOSRestController
         $this->get('webburza_wishlist.repository.wishlist_item')->remove($wishlistItem);
 
         // If this was an AJAX request, return appropriate response
-        if ($request->getRequestFormat() != 'html') {
+        if ($request->isXmlHttpRequest()) {
             return new JsonResponse(null, Response::HTTP_NO_CONTENT);
         }
 
@@ -145,7 +145,7 @@ class WishlistItemController extends FOSRestController
         // Persist the wishlist item
         $this->get('webburza_wishlist.repository.wishlist_item')->add($wishlistItem);
 
-        if ($request->getRequestFormat() != 'html') {
+        if ($request->isXmlHttpRequest()) {
             return new JsonResponse(null, Response::HTTP_CREATED);
         }
 

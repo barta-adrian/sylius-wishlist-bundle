@@ -77,7 +77,7 @@ class WishlistController extends FOSRestController
             $this->get('webburza_wishlist.repository.wishlist')->add($wishlist);
 
             // If this was an AJAX request, return appropriate response
-            if ($request->getRequestFormat() != 'html') {
+            if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(null, Response::HTTP_CREATED);
             }
 
@@ -128,7 +128,7 @@ class WishlistController extends FOSRestController
                 $this->get('webburza_wishlist.repository.wishlist')->add($form->getData());
 
                 // If this was an AJAX request, return appropriate response
-                if ($request->getRequestFormat() != 'html') {
+                if ($request->isXmlHttpRequest()) {
                     return new JsonResponse(null, Response::HTTP_OK);
                 }
 
@@ -175,7 +175,7 @@ class WishlistController extends FOSRestController
         $this->get('webburza_wishlist.repository.wishlist')->remove($wishlist);
 
         // If this was an AJAX request, return appropriate response
-        if ($request->getRequestFormat() != 'html') {
+        if ($request->isXmlHttpRequest()) {
             return new JsonResponse(null, Response::HTTP_NO_CONTENT);
         }
 
